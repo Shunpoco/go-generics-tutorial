@@ -35,6 +35,15 @@ func SumIntsOrFloats[k comparable, V int64 | float64](m map[k]V) V {
 	return s
 }
 
+func SumIntsOrFloatsOrString[k comparable, V int64 | float64 | string](m map[k]V) V {
+	var s V
+	for _, v := range m {
+		s += v
+	}
+
+	return s
+}
+
 func main() {
 	ints := map[string]int64{
 		"first":  34,
@@ -67,4 +76,10 @@ func main() {
 		2: 20,
 	}
 	fmt.Println(SumIntsOrFloats[int, int64](intsWithInt))
+
+	strs := map[int]string{
+		1: "hoge",
+		2: "fuga",
+	}
+	fmt.Println(SumIntsOrFloatsOrString(strs))
 }
